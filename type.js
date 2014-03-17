@@ -1,15 +1,27 @@
 (function() {
-  var name, type, typeList, _elementTestRe, _fn, _i, _keys, _len;
+  var name, type, _elementTestRe, _fn, _i, _keys, _len, _typeList;
 
-  typeList = "Boolean Number String Function Array Date RegExp Undefined Null NodeList".split(" ");
+  _typeList = "Boolean Number String Function Array Date RegExp Undefined Null NodeList".split(" ");
+
+  _elementTestRe = /element$/;
+
+  _keys = Object.keys || function(obj) {
+    var key, v, _results;
+    _results = [];
+    for (key in obj) {
+      v = obj[key];
+      _results.push(key);
+    }
+    return _results;
+  };
 
   type = (function() {
     var classToType, elemParser, name, toStr, _i, _len;
     toStr = Object.prototype.toString;
     elemParser = /\[object HTML(.*)\]/;
     classToType = {};
-    for (_i = 0, _len = typeList.length; _i < _len; _i++) {
-      name = typeList[_i];
+    for (_i = 0, _len = _typeList.length; _i < _len; _i++) {
+      name = _typeList[_i];
       classToType["[object " + name + "]"] = name.toLowerCase();
     }
     return function(obj) {
@@ -35,21 +47,13 @@
       return type(target) !== nameLower;
     };
   };
-  for (_i = 0, _len = typeList.length; _i < _len; _i++) {
-    name = typeList[_i];
+  for (_i = 0, _len = _typeList.length; _i < _len; _i++) {
+    name = _typeList[_i];
     _fn(name);
   }
 
-  if (typeof module !== "undefined" && module !== null) {
-    module.exports = type;
-  } else {
-    this.type = type;
-  }
-
   type.isEmpty = function(target) {
-    var kind;
-    kind = type(target);
-    switch (kind) {
+    switch (type(target)) {
       case 'null':
         return true;
       case 'undefined':
@@ -81,16 +85,10 @@
     return !type.isElement(target);
   };
 
-  _elementTestRe = /element$/;
-
-  _keys = Object.keys || function(obj) {
-    var key, keys, v;
-    keys = [];
-    for (key in obj) {
-      v = obj[key];
-      keys.push(key);
-    }
-    return keys;
-  };
+  if (typeof module !== "undefined" && module !== null) {
+    module.exports = type;
+  } else {
+    this.type = type;
+  }
 
 }).call(this);

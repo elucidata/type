@@ -1,11 +1,13 @@
 
-typeList= "Boolean Number String Function Array Date RegExp Undefined Null NodeList".split(" ")
+_typeList= "Boolean Number String Function Array Date RegExp Undefined Null NodeList".split(" ")
+_elementTestRe= /element$/
+_keys= Object.keys or (obj)-> key for key,v of obj
 
 type= do ->
   toStr= Object::toString
   elemParser= /\[object HTML(.*)\]/
   classToType= {}
-  for name in typeList
+  for name in _typeList
     classToType["[object " + name + "]"] = name.toLowerCase()
   (obj) ->
     strType= toStr.call(obj)
@@ -16,28 +18,26 @@ type= do ->
     else
       "object"
 
-for name in typeList
+for name in _typeList
   do (name)->
     nameLower= name.toLowerCase()
-    type["is#{ name }"]= (target)-> type(target) is nameLower
-    type["isNot#{ name }"]= (target)-> type(target) isnt nameLower
-
-if module?
-  module.exports= type
-else
-  @type= type
+    
+    type["is#{ name }"]= (target)-> 
+      type(target) is nameLower
+    
+    type["isNot#{ name }"]= (target)-> 
+      type(target) isnt nameLower
 
 
 type.isEmpty= (target)->
-  kind= type target
-  switch kind
-    when 'null' then yes
+  switch type(target)
+    when 'null'      then yes
     when 'undefined' then yes
-    when 'string' then target is ''
-    when 'object' then _keys(target).length is 0
-    when 'array' then target.length is 0
-    when 'number' then isNaN target
-    when 'nodelist' then target.length is 0
+    when 'string'    then target is ''
+    when 'object'    then _keys(target).length is 0
+    when 'array'     then target.length is 0
+    when 'number'    then isNaN target
+    when 'nodelist'  then target.length is 0
     else no
 
 type.isNotEmpty= (target)->
@@ -51,11 +51,7 @@ type.isNotElement= (target)->
   not type.isElement target
 
 
-
-_elementTestRe= /element$/
-
-_keys= Object.keys or (obj)->
-  keys= []
-  for key,v of obj
-    keys.push key
-  keys
+if module?
+  module.exports= type
+else
+  @type= type
