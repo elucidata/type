@@ -1,0 +1,21 @@
+{
+  "name": "elucidata-type",
+  "main": "type.js",
+  "version": "1.1.0",
+  "homepage": "https://github.com/elucidata/type",
+  "authors": [
+    "Matt McCray <matt@elucidata.net>"
+  ],
+  "description": "Enhanced typeof function",
+  "keywords": [
+    "typeof"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
