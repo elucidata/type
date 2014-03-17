@@ -84,3 +84,18 @@ type.isNotElement( target )
 type.isElement(document.body) // => true
 type.isElement({}) // => false
 ```
+
+
+# Installation
+
+Pick your poison:
+
+```bash
+npm install elucidata-type
+```
+
+```bash
+bower install elucidata-type
+```
+
+Or just include `test.js` in your page directly.
