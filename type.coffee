@@ -18,7 +18,7 @@ type= do ->
     else
       "object"
 
-for name in _typeList
+for name in _typeList.concat(['Object'])
   do (name)->
     nameLower= name.toLowerCase()
     

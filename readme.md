@@ -46,6 +46,9 @@ type(document.createElement('div'))
 Includes helper methods for each type:
 
 ```javascript
+type.isObject( target )
+type.isNotObject( target )
+
 type.isBoolean( target )
 type.isNotBoolean( target )
 

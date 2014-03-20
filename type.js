@@ -1,5 +1,5 @@
 (function() {
-  var name, type, _elementTestRe, _fn, _i, _keys, _len, _typeList;
+  var name, type, _elementTestRe, _fn, _i, _keys, _len, _ref, _typeList;
 
   _typeList = "Boolean Number String Function Array Date RegExp Undefined Null NodeList".split(" ");
 
@@ -37,6 +37,7 @@
     };
   })();
 
+  _ref = _typeList.concat(['Object']);
   _fn = function(name) {
     var nameLower;
     nameLower = name.toLowerCase();
@@ -47,8 +48,8 @@
       return type(target) !== nameLower;
     };
   };
-  for (_i = 0, _len = _typeList.length; _i < _len; _i++) {
-    name = _typeList[_i];
+  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+    name = _ref[_i];
     _fn(name);
   }
 

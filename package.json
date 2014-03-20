@@ -1,6 +1,6 @@
 {
   "name": "elucidata-type",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Enhanced typeof function",
   "main": "type.js",
   "directories": {
