@@ -3,6 +3,8 @@
 Simple js component that is an enhanced typeof function. Reliably returns object types, and element types for modern browsers.
 
 ```javascript
+import {type} from 'elucidata-type'
+
 type(null)
 // => "null"
 type(window.undefinedProperty)
@@ -41,11 +43,15 @@ type(document.body)
 // => "bodyelement"
 type(document.createElement('div'))
 // => "divelement"
+type(Symbol('test'))
+// => "symbol"
 ```
 
 Includes helper methods for each type:
 
 ```javascript
+import * as type from 'elucidata-type'
+
 type.isObject( target )
 type.isNotObject( target )
 
@@ -79,6 +85,9 @@ type.isNotNull( target )
 type.isNodeList( target )
 type.isNotNodeList( target )
 
+type.isSymbol( target )
+type.isNotSymbol( target )
+
 type.isElement( target )
 type.isNotElement( target )
 
@@ -101,4 +110,38 @@ npm install elucidata-type
 bower install elucidata-type
 ```
 
-Or just include `test.js` in your page directly.
+# Definitions
+
+```ts
+export declare const getType: (target: any) => string;
+export declare const of: (target: any) => string;
+export declare const type: (target: any) => string;
+export declare const isBoolean: (target: any) => boolean;
+export declare const isNotBoolean: (target: any) => boolean;
+export declare const isNumber: (target: any) => boolean;
+export declare const isNotNumber: (target: any) => boolean;
+export declare const isString: (target: any) => boolean;
+export declare const isNotString: (target: any) => boolean;
+export declare const isFunction: (target: any) => boolean;
+export declare const isNotFunction: (target: any) => boolean;
+export declare const isArray: (target: any) => boolean;
+export declare const isNotArray: (target: any) => boolean;
+export declare const isDate: (target: any) => boolean;
+export declare const isNotDate: (target: any) => boolean;
+export declare const isRegExp: (target: any) => boolean;
+export declare const isNotRegExp: (target: any) => boolean;
+export declare const isUndefined: (target: any) => boolean;
+export declare const isNotUndefined: (target: any) => boolean;
+export declare const isNull: (target: any) => boolean;
+export declare const isNotNull: (target: any) => boolean;
+export declare const isNodeList: (target: any) => boolean;
+export declare const isNotNodeList: (target: any) => boolean;
+export declare const isObject: (target: any) => boolean;
+export declare const isNotObject: (target: any) => boolean;
+export declare const isSymbol: (target: any) => boolean;
+export declare const isNotSymbol: (target: any) => boolean;
+export declare const isEmpty: (target: any) => boolean;
+export declare const isNotEmpty: (target: any) => boolean;
+export declare const isElement: (target: any) => boolean;
+export declare const isNotElement: (target: any) => boolean;
+```

@@ -1,13 +1,15 @@
 {
   "name": "elucidata-type",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Enhanced typeof function",
   "main": "type.js",
+  "types": "type.d.ts",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/elucidata/type/issues"
   },
-  "homepage": "https://github.com/elucidata/type"
+  "homepage": "https://github.com/elucidata/type",
+  "devDependencies": {
+    "mocha": "^3.1.2",
+    "typescript": "^2.0.10",
+    "uglify-js": "^2.7.4"
+  }
 }
