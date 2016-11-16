@@ -52,6 +52,8 @@ describe('Type', () => {
     testIt('Null', null)
     testIt('Undefined')
     testIt('Undefined', void 0, '(void 0)')
+    testIt('Function', () => {}, '() => {}')
+    testIt('Function', function(){}, 'function() {}')
     testIt('String', '')
     testIt('RegExp', /test/)
     testIt('Date', new Date())
@@ -64,32 +66,8 @@ describe('Type', () => {
     testIt('Empty', void 0, 'undefined')
     testIt('Empty', (1 / 'a'), 'NaN')
 
-    // isBoolean
-    // isNotBoolean
-    // isNumber
-    // isNotNumber
-    // isString
-    // isNotString
-    // isFunction
-    // isNotFunction
-    // isArray
-    // isNotArray
-    // isDate
-    // isNotDate
-    // isRegExp
-    // isNotRegExp
-    // isUndefined
-    // isNotUndefined
-    // isNull
-    // isNotNull
     // isNodeList
     // isNotNodeList
-    // isObject
-    // isNotObject
-    // isSymbol
-    // isNotSymbol
-    // isEmpty
-    // isNotEmpty
     // isElement
     // isNotElement
 
@@ -113,6 +91,8 @@ describe('Type', () => {
     testIt('Null', null)
     testIt('Undefined')
     testIt('Undefined', void 0, '(void 0)')
+    testIt('Function', () => {}, '() => {}')
+    testIt('Function', function(){}, 'function() {}')
     testIt('String', '')
     testIt('RegExp', /test/)
     testIt('Date', new Date())
@@ -125,32 +105,49 @@ describe('Type', () => {
     testIt('Empty', void 0, 'undefined')
     testIt('Empty', (1 / 'a'), 'NaN')
 
-    // isBoolean
-    // isNotBoolean
-    // isNumber
-    // isNotNumber
-    // isString
-    // isNotString
-    // isFunction
-    // isNotFunction
-    // isArray
-    // isNotArray
-    // isDate
-    // isNotDate
-    // isRegExp
-    // isNotRegExp
-    // isUndefined
-    // isNotUndefined
-    // isNull
-    // isNotNull
+    
     // isNodeList
     // isNotNodeList
-    // isObject
-    // isNotObject
-    // isSymbol
-    // isNotSymbol
-    // isEmpty
-    // isNotEmpty
+    // isElement
+    // isNotElement
+
+  })
+
+  describe('checking types', () => {
+
+    function testIt(type, target, extra) {
+      it(`isNot${type} should return false ${extra || ''}`, () => {
+        var typeChecker = Type[`isNot${type}`]
+        assert.equal(typeChecker(target), false)
+      })
+    }
+
+    testIt('Boolean', true, '(true)')
+    testIt('Boolean', false, '(false)')
+    testIt('Number', 1, '(integer)')
+    testIt('Number', 0, '(0)')
+    testIt('Number', 3.5, '(float)')
+    testIt('Object', {})
+    testIt('Null', null)
+    testIt('Undefined')
+    testIt('Undefined', void 0, '(void 0)')
+    testIt('Function', () => {}, '() => {}')
+    testIt('Function', function(){}, 'function() {}')
+    testIt('String', '')
+    testIt('RegExp', /test/)
+    testIt('Date', new Date())
+    testIt('Array', [])
+    testIt('Symbol', Symbol('test'))
+    testIt('Empty', [], '[]')
+    testIt('Empty', {}, '{}')
+    testIt('Empty', '', '""')
+    testIt('Empty', null, 'null')
+    testIt('Empty', void 0, 'undefined')
+    testIt('Empty', (1 / 'a'), 'NaN')
+
+    
+    // isNodeList
+    // isNotNodeList
     // isElement
     // isNotElement
 
