@@ -5,10 +5,6 @@
     else if (typeof define === 'function' && define.amd) {
         define(["require", "exports"], factory);
     }
-    else {
-        this['Type'] = {}
-        factory({}, this['Type'])
-    }
 })(function (require, exports) {
     "use strict";
     exports.getType = (function (_typeList) {
