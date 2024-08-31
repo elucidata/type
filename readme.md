@@ -105,10 +105,6 @@ Pick your poison:
 npm install @elucidata/type
 ```
 
-```bash
-bower install @elucidata/type
-```
-
 # Definitions
 
 ```ts
